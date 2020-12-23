@@ -1,0 +1,28 @@
+stages:
+    - Cluster Setup
+    - Cluster Cleanup
+
+EKS Setup:
+  stage: Cluster Setup
+  tags:
+    - kubera-litmus
+  script:
+    - chmod 755 build/eks/1-cluster-setup/setup
+    - ./build/eks/1-cluster-setup/setup
+  artifacts:
+    when: always
+    paths:
+      - .kube/
+
+EKS Cleanup:
+    when: always
+    stage: Cluster Cleanup
+    tags:
+      - kubera-litmus
+    script:
+      - chmod 755 build/eks/2-cluster-cleanup/cleanup
+      - ./build/eks/2-cluster-cleanup/cleanup
+    artifacts:
+      when: always
+      paths:
+        - .kube/
