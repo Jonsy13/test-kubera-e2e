@@ -34,7 +34,7 @@ Kubera-Setup:
   tags: 
     - kubera-litmus
   script:
-    - make install-kubera
+    - make install
   artifacts:
     when: always
     paths:
