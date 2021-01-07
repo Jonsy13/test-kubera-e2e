@@ -34,7 +34,8 @@ Kubera-Setup:
   tags: 
     - kubera-litmus
   script:
-    - make install
+    - chmod 755 k8s_scripts/KuberaInstall
+    - ./k8s_scripts/KuberaInstall
   artifacts:
     when: always
     paths:
