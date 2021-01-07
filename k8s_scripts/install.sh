@@ -11,7 +11,8 @@ cp $path/.kube/admin.conf ~/.kube/config
 # Booting up the kubera Setup
 kubectl create ns kubera
 kubectl get nodes 
-helm repo add kubera https://charts.mayadata.io  
+helm repo add kubera https://charts.mayadata.io
+helm repo update  
 helm install kubera kubera/kubera-enterprise --namespace=kubera
 
 echo "Pods Running in Kubera Namespace"
