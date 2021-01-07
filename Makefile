@@ -4,16 +4,16 @@
 
 IS_DOCKER_INSTALLED = $(shell which docker >> /dev/null 2>&1; echo $$?)
 
-TESTPATH ?= /home/udit1/go/src/github.com/litmuschaos/litmus-e2e
+# TESTPATH ?= /home/udit1/go/src/github.com/litmuschaos/litmus-e2e
 
 .PHONY: install-kubera
 install-kubera:
 
 	@echo "-----------"
-	@echo "Installing Litmus-Portal"
+	@echo "Installing Kubera"
 	@echo "-----------"
-	@chmod 755 $(TESTPATH)/k8s_scripts/LitmusInstall.sh
-	@$(TESTPATH)/k8s_scripts/LitmusInstall.sh
+	@chmod 755 k8s_scripts/LitmusInstall.sh
+	@k8s_scripts/LitmusInstall.sh
 
 
 .PHONY: e2e-metrics
