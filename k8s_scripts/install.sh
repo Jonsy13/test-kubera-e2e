@@ -9,6 +9,7 @@ cat $path/.kube/admin.conf > ~/.kube/config
 
 # Booting up the kubera Setup
 kubectl create ns kubera
+helm repo add kubera https://charts.mayadata.io  
 helm install kubera kubera/kubera-enterprise --namespace=kubera
 
 echo "Pods Running in Kubera Namespace"
