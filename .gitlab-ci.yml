@@ -1,7 +1,8 @@
 stages:
   - Cluster Setup
-  - kubera-setup
-  - e2e-metrics
+  - Kubera-setup
+  - Cypress-setup
+  - E2E-metrics
   - Cluster Cleanup
 
 variables:
@@ -13,7 +14,7 @@ cache: &global_cache
   paths:
     - .npm
     - cache/Cypress
-    - CypressE2E/node_modules
+    - Cypress/node_modules
 
 EKS Setup:
   stage: Cluster Setup
@@ -30,7 +31,7 @@ EKS Setup:
 
 Kubera Setup:
   when: always
-  stage: kubera-setup
+  stage: Kubera-setup
   tags: 
     - kubera-litmus
   script:
@@ -42,9 +43,17 @@ Kubera Setup:
       - .kube/
   cache: {}
 
+Cypress Setup:
+  when: always
+  stage: Cypress-setup
+  tags: 
+    - kubera-litmus
+  script:
+    - cd Cypress && npm ci --prefer-offline
+
 E2E Metric:
   when: always
-  stage: e2e-metrics
+  stage: E2E-metrics
   tags: 
     - kubera-litmus
   script:

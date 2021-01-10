@@ -38,7 +38,6 @@ coverage_percentage=$(kubectl get pcover -n $COVERAGE_NAMESPACE -o=jsonpath='{.i
 touch e2e-metrics/coverage
 echo "${coverage_percentage::-1}" > e2e-metrics/coverage
 sleep 2
-fi
 
 #clean up
 kubectl delete -f e2e-metrics/deploy/rbac.yaml
