@@ -45,6 +45,7 @@ Kubera Setup:
 
 Cypress Setup:
   when: always
+  image: cypress/base:10
   stage: Cypress-setup
   tags: 
     - kubera-litmus
