@@ -28,7 +28,7 @@ EKS Setup:
       - .kube/
   cache: {}
 
-Kubera-Setup:
+Kubera Setup:
   when: always
   stage: kubera-setup
   tags: 
@@ -42,18 +42,19 @@ Kubera-Setup:
       - .kube/
   cache: {}
 
-# e2e-metric:
-#   when: always
-#   stage: e2e-metrics
-#   tags: 
-#     - kubera-litmus
-#   script:
-#     - make e2e-metrics
-#   artifacts:
-#     when: always
-#     paths:
-#       - .kube/
-#   cache: {}
+E2E Metric:
+  when: always
+  stage: e2e-metrics
+  tags: 
+    - kubera-litmus
+  script:
+    - chmod 755 ./metrics/e2e-metrics.sh
+    - ./metrics/e2e-metrics.sh
+  artifacts:
+    when: always
+    paths:
+      - .kube/
+  cache: {}
 
 EKS Cleanup:
     when: always

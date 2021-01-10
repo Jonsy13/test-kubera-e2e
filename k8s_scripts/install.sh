@@ -4,7 +4,7 @@ path=$(pwd)
 
 # # Setting up the kubeconfig
 mkdir -p ~/.kube
-# cp $path/.awscluster2/config ~/.kube/config
+
 cp $path/.kube/config ~/.kube/config
 cp $path/.kube/admin.conf ~/.kube/config
 

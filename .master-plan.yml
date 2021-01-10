@@ -1,0 +1,17 @@
+apiVersion: e2e.mayadata.io/v1alpha1
+kind: MasterPlan
+metadata:
+  name: kubera-litmus-e2e-master-testplan
+spec:
+  tests:
+  # ----------------------------------------------------------
+  # Cypress UI Tests for Kubera-Core for Self Cluster
+  # ----------------------------------------------------------
+  - tcid: TCID-EC2-KuberaCore-GUI-Auth
+    name: "TCID-EC2-KuberaCore-GUI-Auth"
+    description: "UI Tests for Login and Welcome Modal Functionalities"
+    labels:
+      test/feature: "Kubera-Core"
+      test/tags: "Basic,UI"
+      git/location: ""
+      test/status: "Not Done"

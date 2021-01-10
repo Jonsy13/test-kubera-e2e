@@ -1,6 +1,12 @@
 #!/bin/bash
 set -ex
 
+# # Setting up the kubeconfig
+mkdir -p ~/.kube
+
+cp $path/.kube/config ~/.kube/config
+cp $path/.kube/admin.conf ~/.kube/config
+
 # set environment variables
 COVERAGE_NAMESPACE="e2e-metrics"
 E2E_METRICS_PIPELINE_ID=$(echo $CI_PIPELINE_ID)
@@ -40,3 +46,6 @@ kubectl delete -f e2e-metrics/deploy/operator.yaml
 kubectl delete -f e2e-metrics/deploy/namespace.yaml
 rm -rf e2e-metrics
 
+# # Getting latest kubeconfig in cache
+cat ~/.kube/config > $path/.kube/config
+cat ~/.kube/config > $path/.kube/admin.conf
