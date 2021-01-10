@@ -1,5 +1,6 @@
 #!/bin/bash
 set -ex
+path=$(pwd)
 
 # # Setting up the kubeconfig
 mkdir -p ~/.kube
