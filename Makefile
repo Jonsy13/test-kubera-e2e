@@ -4,35 +4,31 @@
 
 IS_DOCKER_INSTALLED = $(shell which docker >> /dev/null 2>&1; echo $$?)
 
-# TESTPATH ?= /home/udit1/go/src/github.com/litmuschaos/litmus-e2e
-
-.PHONY: install
-install:
+.PHONY: kubera-install
+kubera-install:
 
 	@echo "-----------"
 	@echo "Installing Kubera"
 	@echo "-----------"
-	@chmod 755 k8s_scripts/KuberaInstall.sh
-	@k8s_scripts/KuberaInstall.sh
+	@chmod 755 k8s_scripts/install.sh
+	@k8s_scripts/install.sh
+
+.PHONY: cypress-install
+cypress-install:
+
+	@echo "-----------"
+	@echo "Installing Cypress"
+	@echo "-----------"
+	@cd Cypress && npm ci --prefer-offline
 
 
 .PHONY: e2e-metrics
 e2e-metrics:
 
-	@echo "----------------------------"
+	@echo "-----------"
 	@echo "Pipeline Coverage Percentage"
-	@echo "----------------------------"
-	@sshpass -p ${portal_pass} ssh -o StrictHostKeyChecking=no ${portal_user}@${litmus_ip} -p ${port} -tt \
-	 "export CI_JOB_ID=${CI_JOB_ID} && export CI_PIPELINE_ID=${CI_PIPELINE_ID} && cd $(TESTPATH) && bash metrics/e2e-metrics"
-
-.PHONY: uninstall-portal
-uninstall-portal:
-
 	@echo "-----------"
-	@echo "Uninstalling Litmus-Portal"
-	@echo "-----------"
-	@sshpass -p ${portal_pass} ssh -o StrictHostKeyChecking=no ${portal_user}@${litmus_ip} -p ${port} -tt \
-	 "chmod 755 $(TESTPATH)/k8s_scripts/LitmusUninstall.sh"
-	@sshpass -p ${portal_pass} ssh -o StrictHostKeyChecking=no ${portal_user}@${litmus_ip} -p ${port} -tt \
-	 "$(TESTPATH)/k8s_scripts/LitmusUninstall.sh"
+	@chmod 755 metrics/e2e-metrics.sh
+	@metrics/e2e-metrics.sh
+
 

@@ -36,8 +36,7 @@ Kubera-Setup:
   tags: 
     - kubera-litmus
   script:
-    - chmod 755 ./k8s_scripts/install.sh
-    - ./k8s_scripts/install.sh
+    - make kubera-install
   artifacts:
     when: always
     paths:
@@ -53,8 +52,7 @@ Cypress-Setup:
   tags: 
     - kubera-litmus
   script:
-    - echo "$URL" 
-    - cd Cypress && npm ci --prefer-offline
+    - make cypress-install
   needs:
     - job: Kubera-Setup
       artifacts: true
@@ -71,6 +69,7 @@ TCID-EC2-Kubera-GUI-Basic:
   needs:
     - job: Kubera-Setup
       artifacts: true
+  cache: {} 
 
 E2E-Metric:
   when: always
@@ -78,8 +77,7 @@ E2E-Metric:
   tags: 
     - kubera-litmus
   script:
-    - chmod 755 ./metrics/e2e-metrics.sh
-    - ./metrics/e2e-metrics.sh
+    - make e2e-metrics
   artifacts:
     when: always
     paths:
