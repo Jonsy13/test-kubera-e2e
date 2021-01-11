@@ -2,6 +2,7 @@ stages:
   - Cluster Setup
   - Kubera-setup
   - Cypress-setup
+  - GUI-Tests
   - E2E-metrics
   - Cluster Cleanup
 
@@ -54,6 +55,19 @@ Cypress-Setup:
   script:
     - echo "$URL" 
     - cd Cypress && npm ci --prefer-offline
+  needs:
+    - job: Kubera-Setup
+      artifacts: true
+
+TCID-EC2-Kubera-GUI-Basic:
+  when: always
+  image: cypress/base:10
+  stage: GUI-Tests
+  tags: 
+    - kubera-litmus
+  script:
+    - echo "$URL" 
+    - cd Cypress && CYPRESS_BASE_URL=$URL npm run BasicTests
   needs:
     - job: Kubera-Setup
       artifacts: true

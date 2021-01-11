@@ -1,10 +1,10 @@
 {
   "name": "kubera-litmus",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tests for Kubera-Litmus",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "BasicTests": "cypress run"
   },
   "author": "",
   "license": "MIT",
