@@ -29,7 +29,7 @@ EKS Setup:
       - .kube/
   cache: {}
 
-Kubera Setup:
+Kubera-Setup:
   when: always
   stage: Kubera-setup
   tags: 
@@ -41,18 +41,24 @@ Kubera Setup:
     when: always
     paths:
       - .kube/
+    reports:
+      dotenv: Kubera-Setup.env
   cache: {}
 
-Cypress Setup:
+Cypress-Setup:
   when: always
   image: cypress/base:10
   stage: Cypress-setup
   tags: 
     - kubera-litmus
   script:
+    - echo "$URL" 
     - cd Cypress && npm ci --prefer-offline
+  needs:
+    - job: Kubera-Setup
+      artifacts: true
 
-E2E Metric:
+E2E-Metric:
   when: always
   stage: E2E-metrics
   tags: 

@@ -26,7 +26,15 @@ kubectl wait --for=condition=Ready pods --all --namespace kubera --timeout=120s
 
 # Getting The LoadBalancer IP for accessing Kubera-core
 kubectl patch svc kubera-ingress-nginx-controller -p '{"spec": {"type": "LoadBalancer"}}' -n kubera
-IP=$(kubectl get svc -n kubera --no-headers |awk '/kubera-ingress-nginx-controller/ {print $4}' | head -n 1)
+
+IP="";
+# Waiting for LoadBalancer assignment for svc 
+while [ -z $IP ]; 
+do echo "Waiting for end point..."; 
+IP=$(kubectl get svc kubera-ingress-nginx-controller -n kubera --template="{{range .status.loadBalancer.ingress}}{{.hostname}}{{end}}"); 
+[ -z "$IP" ] && sleep 10; 
+done; 
+
 URL=http://$IP
 
 # Waiting for URL to be active
