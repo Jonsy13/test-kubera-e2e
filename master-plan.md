@@ -7,24 +7,24 @@ Following is a sample master plan yaml:
 ```yaml
 kind: MasterPlan
 metadata:
-  name: litmus-e2e-master-testplan
+  name: kubera-litmus-e2e-master-testplan
 spec:
   tests:
-    - tcid: TCID-EC2-KuberaCore-GUI-Auth
+    - tcid: TCID-EC2-KuberaCore-GUI-Access
       name: "TCID-EC2-KuberaCore-GUI-Auth"
-      description: "UI Tests for Login and Welcome Modal Functionalities"
+      description: "UI Tests for Kubera Access"
       labels:
         test/feature: "Kubera-Core"
         test/tags: "Basic,UI"
         git/location: ""
-        test/status: "Not Done"
+        test/status: "Done"
 
     - tcid: TCID-EC2-KuberaCore-GUI-License
       name: "TCID-EC2-KuberaCore-GUI-License"
       description: "UI Tests for License"
       labels:
         test/feature: "Kubera-Core"
-        test/tags: "Basic,UI"
+        test/tags: "Not Basic,UI"
         git/location: ""
         test/status: "Not Done"
 ```
@@ -35,7 +35,7 @@ spec:
 - The format of adding `tcid` is `TCID-<PLATFORM>-<TEST-CATEGORY>-<TEST-SCOPE>-<ACTUAL-TEST-NAME>`. <br>
 
   **PLATFORM:** It is the platform where the e2e tests are running.<br>
-  **TEST-CATEGORY:** The category of the test. It can be generic, litmus-portal, openebs, or any other.<br>
+  **TEST-CATEGORY:** The category of the test. It can be Kubera in our case.<br>
   **TEST-SCOPE:** Specify the scope of the test. It can be an app for application-level test or infra for infra level test.<br>
   **ACTUAL-TEST-NAME:** The actual name of the test<br>
 

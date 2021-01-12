@@ -7,11 +7,20 @@ spec:
   # ----------------------------------------------------------
   # Cypress UI Tests for Kubera-Core for Self Cluster
   # ----------------------------------------------------------
-  - tcid: TCID-EC2-Kubera-GUI-Basic
-    name: "TCID-EC2-Kubera-GUI-Basic"
+  - tcid: TCID-EC2-Kubera-GUI-Access
+    name: "TCID-EC2-Kubera-GUI-Access"
     description: "UI Tests for Kubera Access"
     labels:
       test/feature: "Kubera-Core"
       test/tags: "Basic,UI"
       git/location: ""
       test/status: "Done"
+
+  - tcid: TCID-EC2-Kubera-GUI-Basic
+    name: "TCID-EC2-Kubera-GUI-Basic"
+    description: "UI Tests for Kubera Auth"
+    labels:
+      test/feature: "Kubera-Core"
+      test/tags: "Basic,UI"
+      git/location: ""
+      test/status: "Not Done"

@@ -57,7 +57,7 @@ Cypress-Setup:
     - job: Kubera-Setup
       artifacts: true
 
-TCID-EC2-Kubera-GUI-Basic:
+TCID-EC2-Kubera-GUI-Access:
   when: always
   image: cypress/base:10
   stage: GUI-Tests
@@ -69,7 +69,9 @@ TCID-EC2-Kubera-GUI-Basic:
   needs:
     - job: Kubera-Setup
       artifacts: true
-  cache: {} 
+  cache:
+    <<: *global_cache
+    policy: pull
 
 E2E-Metric:
   when: always
