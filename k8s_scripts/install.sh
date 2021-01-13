@@ -47,7 +47,3 @@ echo "URL to access Kubera-Core: $URL"
 
 # Storing URL as env variable
 echo "URL=$URL" >> Kubera-Setup.env
-
-# # Getting latest kubeconfig in cache
-cat ~/.kube/config > $path/.kube/config
-cat ~/.kube/config > $path/.kube/admin.conf

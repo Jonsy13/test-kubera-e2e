@@ -46,6 +46,3 @@ kubectl delete -f e2e-metrics/deploy/operator.yaml
 kubectl delete -f e2e-metrics/deploy/namespace.yaml
 rm -rf e2e-metrics
 
-# # Getting latest kubeconfig in cache
-cat ~/.kube/config > $path/.kube/config
-cat ~/.kube/config > $path/.kube/admin.conf

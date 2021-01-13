@@ -1,10 +1,10 @@
 stages:
-  - Cluster Setup
+  - Cluster-Setup
   - Kubera-setup
   - Cypress-setup
   - GUI-Tests
   - E2E-metrics
-  - Cluster Cleanup
+  - Cluster-Cleanup
 
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
@@ -17,8 +17,8 @@ cache: &global_cache
     - cache/Cypress
     - Cypress/node_modules
 
-EKS Setup:
-  stage: Cluster Setup
+EKS-Setup:
+  stage: Cluster-Setup
   tags:
     - kubera-litmus
   script:
@@ -86,9 +86,9 @@ E2E-Metric:
       - .kube/
   cache: {}
 
-EKS Cleanup:
+EKS-Cleanup:
     when: always
-    stage: Cluster Cleanup
+    stage: Cluster-Cleanup
     tags:
       - kubera-litmus
     script:
