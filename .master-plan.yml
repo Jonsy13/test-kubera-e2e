@@ -7,20 +7,29 @@ spec:
   # ----------------------------------------------------------
   # Cypress UI Tests for Kubera-Core for Self Cluster
   # ----------------------------------------------------------
-  - tcid: TCID-EC2-Kubera-GUI-Access
-    name: "TCID-EC2-Kubera-GUI-Access"
-    description: "UI Tests for Kubera Access"
+  - tcid: TCID-EC2-Kubera-GUI-Auth
+    name: "TCID-EC2-Kubera-GUI-Auth"
+    description: "UI Tests for Kubera-Core Auth"
     labels:
       test/feature: "Kubera-Core"
-      test/tags: "Basic,UI"
-      git/location: ""
+      test/tags: "Auth,UI"
+      git/location: "https://github.com/mayadata-io/kubera-e2e-litmus/tree/master/test-cases/TCID-EC2-Kubera-GUI-Auth.md"
       test/status: "Done"
 
-  - tcid: TCID-EC2-Kubera-GUI-Basic
-    name: "TCID-EC2-Kubera-GUI-Basic"
-    description: "UI Tests for Kubera Auth"
+  - tcid: TCID-EC2-Kubera-GUI-Github-Auth
+    name: "TCID-EC2-Kubera-GUI-Auth"
+    description: "UI Tests for Kubera-Core Github-Auth"
     labels:
       test/feature: "Kubera-Core"
-      test/tags: "Basic,UI"
+      test/tags: "Github-Auth,UI"
+      git/location: ""
+      test/status: "Not Done"
+
+  - tcid: TCID-EC2-Kubera-GUI-Products-Configuration
+    name: "TCID-EC2-Kubera-GUI-Products-Configuration"
+    description: "UI Tests for Kubera-Core Products-Configuration"
+    labels:
+      test/feature: "Kubera-Core"
+      test/tags: "Products-Configuration,UI"
       git/location: ""
       test/status: "Not Done"

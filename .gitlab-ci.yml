@@ -41,8 +41,7 @@ Kubera-Setup:
     when: always
     paths:
       - .kube/
-    reports:
-      dotenv: Kubera-Setup.env
+      - url.txt
   cache: {}
 
 Cypress-Setup:
@@ -53,22 +52,17 @@ Cypress-Setup:
     - kubera-litmus
   script:
     - make cypress-install
-  needs:
-    - job: Kubera-Setup
-      artifacts: true
 
-TCID-EC2-Kubera-GUI-Access:
+TCID-EC2-Kubera-GUI-Auth:
   when: always
   image: cypress/base:10
   stage: GUI-Tests
   tags: 
     - kubera-litmus
   script:
+    - source url.txt
     - echo "$URL" 
     - cd Cypress && CYPRESS_BASE_URL=$URL npm run BasicTests
-  needs:
-    - job: Kubera-Setup
-      artifacts: true
   cache:
     <<: *global_cache
     policy: pull

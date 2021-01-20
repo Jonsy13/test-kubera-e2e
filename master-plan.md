@@ -39,7 +39,7 @@ spec:
   **TEST-SCOPE:** Specify the scope of the test. It can be an app for application-level test or infra for infra level test.<br>
   **ACTUAL-TEST-NAME:** The actual name of the test<br>
 
-  **Example:** TCID-VMWx-Portal-GUI-Auth
+  **Example:** TCID-EC2-Kubera-GUI-Auth
 
 _Following items are added in list format:_
 

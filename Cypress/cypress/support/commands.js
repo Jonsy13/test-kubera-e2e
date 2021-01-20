@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// Custom Login Fuction.
+Cypress.Commands.add("login", (username, password) => {
+  cy.clearCookie("core-token");
+  indexedDB.deleteDatabase("localforage");
+  cy.visit("/login");
+  cy.get("[data-cy=inputName]").type(username);
+  cy.get("[data-cy=inputPassword]").type(password);
+  cy.get("[data-cy=loginButton]").click();
+});
+
+// Custom Logout Fucntion.
+Cypress.Commands.add("logout", () => {
+  cy.get("[data-cy=header-dropdown]").click();
+  cy.get("[data-cy=logout]").click();
+  // Confirmation of Signout Page
+  cy.url().should("include", "/signout");
+  cy.get("[data-cy=logoutButton]").click();
+});

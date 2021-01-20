@@ -45,5 +45,6 @@ done
 
 echo "URL to access Kubera-Core: $URL"
 
-# Storing URL as env variable
-echo "URL=$URL" >> Kubera-Setup.env
+Storing URL as env variable
+echo "URL=$URL" > url.txt
+

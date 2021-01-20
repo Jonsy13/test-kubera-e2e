@@ -14,7 +14,12 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// For preserving cookies between tests.
+Cypress.Cookies.defaults({
+  preserve: ["core-token", "chaos-token", "propel-token"],
+});
