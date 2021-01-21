@@ -2,7 +2,7 @@ stages:
   # - Cluster-Setup
   - Kubera-setup
   # - Cypress-setup
-  - GUI-Tests
+  # - GUI-Tests
   # - E2E-metrics
   # - Cluster-Cleanup
 
@@ -33,7 +33,7 @@ cache: &global_cache
 Kubera-Setup:
   when: always
   stage: Kubera-setup
-  tags: 
+  tags:
     - kubera-litmus
   script:
     - make kubera-install
@@ -41,36 +41,35 @@ Kubera-Setup:
     when: always
     paths:
       - .kube/
-      - k8s_scripts/url.txt
+      - url.txt
   cache: {}
 
 # Cypress-Setup:
 #   when: always
 #   image: cypress/base:10
 #   stage: Cypress-setup
-#   tags: 
+#   tags:
 #     - kubera-litmus
 #   script:
 #     - make cypress-install
 
-TCID-EC2-Kubera-GUI-Auth:
-  when: always
-  image: cypress/base:10
-  stage: GUI-Tests
-  tags: 
-    - kubera-litmus
-  script:
-    - source k8s_scripts/url.txt
-    - echo "$Path" 
-    # - cd Cypress && CYPRESS_BASE_URL=$URL npm run BasicTests
-  cache:
-    <<: *global_cache
-    policy: pull
-
+# TCID-EC2-Kubera-GUI-Auth:
+#   when: always
+#   image: cypress/base:10
+#   stage: GUI-Tests
+#   tags:
+#     - kubera-litmus
+#   script:
+#     - source url.txt
+#     - echo "$Path"
+#     # - cd Cypress && CYPRESS_BASE_URL=$URL npm run BasicTests
+#   cache:
+#     <<: *global_cache
+#     policy: pull
 # E2E-Metric:
 #   when: always
 #   stage: E2E-metrics
-#   tags: 
+#   tags:
 #     - kubera-litmus
 #   script:
 #     - make e2e-metrics
