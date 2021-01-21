@@ -1,10 +1,10 @@
 stages:
-  # - Cluster-Setup
+  - Cluster-Setup
   - Kubera-setup
-  # - Cypress-setup
+  - Cypress-setup
   - GUI-Tests
-  # - E2E-metrics
-  # - Cluster-Cleanup
+  - E2E-metrics
+  - Cluster-Cleanup
 
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
@@ -17,18 +17,18 @@ cache: &global_cache
     - cache/Cypress
     - Cypress/node_modules
 
-# EKS-Setup:
-#   stage: Cluster-Setup
-#   tags:
-#     - kubera-litmus
-#   script:
-#     - chmod 755 build/eks/1-cluster-setup/setup
-#     - ./build/eks/1-cluster-setup/setup
-#   artifacts:
-#     when: always
-#     paths:
-#       - .kube/
-#   cache: {}
+EKS-Setup:
+  stage: Cluster-Setup
+  tags:
+    - kubera-litmus
+  script:
+    - chmod 755 build/eks/1-cluster-setup/setup
+    - ./build/eks/1-cluster-setup/setup
+  artifacts:
+    when: always
+    paths:
+      - .kube/
+  cache: {}
 
 Kubera-Setup:
   when: always
@@ -44,14 +44,14 @@ Kubera-Setup:
       - url.txt
   cache: {}
 
-# Cypress-Setup:
-#   when: always
-#   image: cypress/base:10
-#   stage: Cypress-setup
-#   tags:
-#     - kubera-litmus
-#   script:
-#     - make cypress-install
+Cypress-Setup:
+  when: always
+  image: cypress/base:10
+  stage: Cypress-setup
+  tags:
+    - kubera-litmus
+  script:
+    - make cypress-install
 
 TCID-EC2-Kubera-GUI-Auth:
   when: always
@@ -63,34 +63,35 @@ TCID-EC2-Kubera-GUI-Auth:
     - kubera-litmus
   script:
     - source url.txt
-    - echo "$Path"
-    # - cd Cypress && CYPRESS_BASE_URL=$URL npm run BasicTests
+    - echo "$URL"
+    - cd Cypress && CYPRESS_BASE_URL=$URL npm run BasicTests
   cache:
     <<: *global_cache
     policy: pull
-# E2E-Metric:
-#   when: always
-#   stage: E2E-metrics
-#   tags:
-#     - kubera-litmus
-#   script:
-#     - make e2e-metrics
-#   artifacts:
-#     when: always
-#     paths:
-#       - .kube/
-#   cache: {}
 
-# EKS-Cleanup:
-#     when: always
-#     stage: Cluster-Cleanup
-#     tags:
-#       - kubera-litmus
-#     script:
-#       - chmod 755 build/eks/2-cluster-cleanup/cleanup
-#       - ./build/eks/2-cluster-cleanup/cleanup
-#     artifacts:
-#       when: always
-#       paths:
-#         - .kube/
-#     cache: {}
+E2E-Metric:
+  when: always
+  stage: E2E-metrics
+  tags:
+    - kubera-litmus
+  script:
+    - make e2e-metrics
+  artifacts:
+    when: always
+    paths:
+      - .kube/
+  cache: {}
+
+EKS-Cleanup:
+    when: always
+    stage: Cluster-Cleanup
+    tags:
+      - kubera-litmus
+    script:
+      - chmod 755 build/eks/2-cluster-cleanup/cleanup
+      - ./build/eks/2-cluster-cleanup/cleanup
+    artifacts:
+      when: always
+      paths:
+        - .kube/
+    cache: {}
